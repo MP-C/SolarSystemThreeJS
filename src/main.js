@@ -1,14 +1,16 @@
+console.log("main file.js");
+
 import { World } from './World/World.js'
 
 function main() {
-  /* Para selecionar a tag onde esta parte será apresentada */
-    const container = document.querySelector('#body');
+  // To select the tag where this part will be displayed
+  const container = document.querySelector('#body');
 
-    /* Permite criar chamar a função World criada noutro ficheiro */
-    const world = new World(container);
+  // Allows you to create and call the World function created in another file
+  const world = new World(container);
 
-    /* Para que a variável sofra "actualização" constante em cada nova alteração de forma imediata */
-    world.render();
+  // So that the variable is constantly "updated" with each new change immediately
+  world.render();
 }
 
 main();

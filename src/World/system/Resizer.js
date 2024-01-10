@@ -1,3 +1,4 @@
+console.log("Resizer file.js");
 
 class Resizer {
     constructor(container, camera, renderer) {

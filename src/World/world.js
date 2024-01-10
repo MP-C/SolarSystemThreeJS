@@ -1,59 +1,90 @@
+console.log("world file.js");
+
 import * as THREE from 'three';
 
-/* Ficheiros importandos de ./components */
+// Importing files from ./components
 import { createCamera } from './components/camera.js';
 import { createScene } from './components/scene.js';
+// import { createUniverse } from './components/skyHorizont';
+// import { createplanet } from './components/planet';
 import { createBox } from './components/box.js';
 
-/* Ficheiros importandos de ./systems */
-import { createRenderer } from './systems/renderer.js';
-import { Resizer } from './systems/Resizer.js';
+// Textures
+import {starsTexture} from '../img/stars.jpg';
+import {galaxyTexture} from '../img/galaxy.jpg';
+import {galaxyZoneTexture} from '../img/galaxyzone.jpg';
 
-/* To control image */
+// Importing files from ./systems
+import { createRenderer } from './system/renderer.js';
+import { Resizer } from './system/Resizer.js';
+
+// To control image
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 
-/* Variáveis que são específicas os modulos específicos, para que não sejam acedidos 
-fora do módulo correspondente */
+// Variables that are specific to the specific modules, so that they are not accessed outside of the corresponding module
 let camera;
 let scene;
 let renderer;
 let controls;
 
-/* Para construir um conteúdo único para os objeto criado */
+// To build a unique content for the created objects
 class World {
     constructor(container) {
-        /* Para reinicializar todas as partes do objetos criados anteriormente dentro do ficheiro World */
+        // To reset all parts of the objects created earlier within the World file
         renderer = createRenderer();
         scene = createScene();
         camera = createCamera();
-        
-        /* Para criar o tabuleiro e este se tornar visivel */
+        // camera.position.set(-90, 140, 140);
+
+        // To create the board and make it visible
         //    let displayRaster = new createDisplayRaster(scene, camera, renderer, controls);
-        
-        /* Para atualizar o container do index.html em main.js a partir da nova função criada em world */
+
+        // To update the container of index.html in main.js from the new function created in world
         container.append(renderer.domElement);
-        
-        /* Para redemensionar cada função a cada momento que ocora alteração do global */
-        const resizer = new Resizer(container, camera, renderer);
-        
-        /* To control the objects */
+
+        // To control the objects
         const orbit = new OrbitControls(camera, renderer.domElement);
-        camera.position.set(0,2,5);
-        
+        orbit.update();
+
         const axes = new THREE.AxesHelper(3);
         scene.add(axes);
         const box = createBox();
         scene.add(box);
         
-        orbit.update();
-        
+        // const ambientLight = new THREE.AmbientLight(0x333333);
+        // scene.add(ambientLight);
+
+        // const universe = createUniverse();
+        // scene.background.add(universe);
+        const cubeTextureLoader = new THREE.CubeTextureLoader();
+        const universe = cubeTextureLoader.load([
+            starsTexture,
+            starsTexture,
+            starsTexture,
+            galaxyZoneTexture,
+            starsTexture,
+            starsTexture,
+            galaxyTexture,
+            starsTexture,
+            starsTexture,
+        ]);
+        const textureLoader = new THREE.TextureLoader();
+
         function animate() {
-            box.rotation.x += 0.01;
-            box.rotation.y += 0.01;
+
             renderer.render(scene, camera);
         }
         renderer.setAnimationLoop(animate);
+    
+        // To resize each function at every moment that a global change occurs
+        //const resizer = new Resizer(container, camera, renderer);        
+        window.addEventListener('resize', function(){
+            camera.aspect = window.innerWidth / this.window.innerHeight;
+            camera.updateProjectMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });    
     }
+    
 
     render() {
         controls.addEventListener("change", () => renderer.render(scene, camera));

@@ -1,3 +1,5 @@
+console.log("box file.js");
+
 import * as THREE from 'three';
 
 function createBox() {
