@@ -13,9 +13,8 @@ function createCamera() {
     camera.lookAt(0, 0, 0);
 
     // To determine the distant zone at which the camera is from the scene, and to be able to view the entire area
-    //camera.position.set(-90, 140, 140);
-    camera.position.set(0, 14, 14);
-
+    camera.position.set(-9, 14, 14);
+    
     return camera;
 }
 
