@@ -58,52 +58,43 @@ controls.autoRotate = true;
 controls.rotateSpeed = 1;
 controls.update();
 
-const space = createSkyHorizont();
-//scene.background = space;
-space.position.set(5,5,5);
-scene.add(space);
 
 const stars = starfields();
 scene.add(stars);
 
-// scene.background = new THREE.CubeTextureLoader()
-// .load( [
-//   starsTexture,
-//   starsTexture,
-//   starsTexture,
-//   starsTexture,
-//   starsTexture,
-//   starsTexture,
-//     ] );
+const loader = new THREE.TextureLoader();
+const backgroundImage = loader.load('https://images.pexels.com/photos/1205301/pexels-photo-1205301.jpeg');
+scene.add(backgroundImage);
 
+const sky = createSkyHorizont();
+scene.background = sky;
+// space.position.set(5,5,5);
+scene.add(sky);
 
 const ambientLight = new THREE.AmbientLight(0xffffff, 1)
 scene.add(ambientLight)
 
-
+const light = new THREE.PointLight(0xffffff,1,300)
+light.position.set(0,0,0);
+scene.add(light);
 
 const axes = new THREE.AxesHelper(10);
 scene.add(axes);
 
-const box = createBox();
-box.position.set(0,0,5)
-scene.add(box);
+const exempleBox = createBox();
+exempleBox.position.set(0,0,5)
+scene.add(exempleBox);
 
 
 
-
-const loader = new THREE.TextureLoader();
 
 // const skyHorizont = createSkyHorizont(scene);
 const sun = createPlanet(sunTexture, 3,90,90, true);
 scene.add(sun);
 
-const light = new THREE.PointLight(0xffffff,1,300)
-light.position.set(0,0,0);
-scene.add(light);
 const sunGeometry = new THREE.SphereGeometry(5,46,99);
 const sunMaterial = new THREE.MeshBasicMaterial({ // MeshPhongMaterial // MeshStandardMaterial // MeshBasicMaterial
-    map: loader.load("https://planetpixelemporium.com/download/download.php?plutomap2k.jpg")
+    map: loader.load(sunTexture)
 });
 const sun1 = new THREE.Mesh(sunGeometry, sunMaterial);
 scene.add(sun1);
@@ -112,8 +103,9 @@ scene.add(sun1);
 
 
 function animate() {
-  box.rotation.x += 0.01;
-  box.rotation.y += 0.01;
+  exempleBox.rotation.x += 0.01;
+  exempleBox.rotation.y += 0.01;
+  stars.rotation.y -= 0.0002;
   sun.rotateY(0.009);
   rendered.render(scene, camera);
 }
