@@ -9,6 +9,12 @@ function createPlanet(texture, a,b,c, ring ) {
     const planetMaterial = new THREE.MeshStandardMaterial({
         map: textureLoad
     })
+
+    // To add a ring to Saturn
+    if(ring){
+
+    }
+
     const planet = new THREE.Mesh(planetGeometry, planetMaterial);
 
     return planet;
