@@ -6,9 +6,7 @@ import * as THREE from 'three';
 new shapes/objects to be inserted so that they are visible in main.js */
 function createScene() {
     const scene = new THREE.Scene();
-    //scene.background = new THREE.Color('#b3b3b3');
-
-    
+    //scene.background = new THREE.Color('#b3b3b3');    
     return scene;
 }
 
