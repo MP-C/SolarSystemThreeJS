@@ -2,7 +2,7 @@ console.log("starfields file.js");
 
 import * as THREE from 'three';
 
-export default function starfields({ numStars = 1000} = {}) {
+export default function starfields({ numStars = 2000} = {}) {
     function randomSpherePoint(){
         const radius = Math.random()*25 +25;
         const u = Math.random();
