@@ -27,18 +27,18 @@ import {starsTexture} from '../src/img/stars.jpg';
 // import {galaxy} from 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/1920px-The_Earth_seen_from_Apollo_17.jpg';
 import {galaxyTexture} from '../src/img/galaxy.jpg';
 import {galaxyZoneTexture} from '../src/img/galaxyzone.jpg';
-import {sunTexture} from '../src/img/sun.jpg';
+
 import {mercuryTexture} from '../src/img/mercury.jpg';
 import {venusTexture} from '../src/img/venus.jpg';
 import {earthTexture} from '../src/img/earth.jpg';
 import {moonTexture} from '../src/img/moon.jpg';
 import {marsTexture} from '../src/img/mars.jpg';
 import {jupiterTexture} from '../src/img/jupiter.jpg';
-import {saturnoTexture} from '../src/img/saturno.jpg';
-import {saturnoRingTexture} from '../src/img/saturnoring.jpg';
+import {saturnTexture} from '../src/img/saturn.jpg';
+import {saturnRingTexture} from '../src/img/saturnring.jpg';
 import {uranusTexture} from '../src/img/uranus.jpg';
 import {uranusRingTexture} from '../src/img/uranusring.jpg';
-import {neptunoTexture} from '../src/img/neptuno.jpg';
+import {neptuneTexture} from '../src/img/neptune.jpg';
 
 
 const rendered = createRenderer();
